@@ -1,0 +1,470 @@
+<div class="content">
+    <div class="container-fluid">
+        <label>Update</label>
+        <input type="checkbox" id="toggleBtn">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Employee details</h4>
+                        <p class="category">update/view employee</p>
+                    </div>
+                    <div class="card-content">
+                        <form action="/update-employee" id="employeeForm">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}" id="_csrf">
+                            <input type="hidden" value="{{employeeId}}" required>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">ID number</label>
+                                        <input id="idNumber" type="text" class="form-control" value="{{idNumber}}" disabled required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">First name</label>
+                                        <input id="firstName" type="text" class="form-control" value="{{firstName}}" disabled required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Last name</label>
+                                        <input id="lastName" type="text" class="form-control" value="{{lastName}}" disabled required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Email</label>
+                                        <input id="email" type="email" class="form-control" value="{{email}}" disabled required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Phone number</label>
+                                        <input id="phoneNumber" type="text" class="form-control" value="{{phoneNumber}}" disabled required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Position</label>
+                                        <select id="position" required class="form-control" required name="position" disabled>
+                                            <option selected>{{position}}</option>
+                                            <option>Boss</option>
+                                            <option>waiter</option>
+                                            <option>cook</option>
+                                            <option>cashier</option>
+                                            <option>driver</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Role</label>
+                                        <select id="role" required class="form-control" required name="role" disabled>
+                                            <option selected>{{role}}</option>
+                                            <option>admin</option>
+                                            <option>assistant admin</option>
+                                            <option>accountant</option>
+                                            <option>user</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Address</label>
+                                        <input id="address" type="text" class="form-control" value="{{address}}" disabled required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Address code</label>
+                                        <input id="postalCode" type="text" class="form-control" value="{{postalCode}}" disabled required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">City</label>
+                                        <input id="city" type="text" class="form-control" value="{{city}}" disabled required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Status</label>
+                                        <select id="status" required class="form-control" required name="role" disabled>
+                                            <option selected>{{status}}</option>
+                                            <option>activated</option>
+                                            <option>deactivated</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="employeeBtn" type="submit" class="btn btn-primary pull-right" disabled>Update</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Account Details</h4>
+                        <p class="category">view/update account</p>
+                    </div>
+                    <div class="card-content">
+                        <form action="/update-employeeAccount" id="accountForm">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                            <input type="hidden" name="employeeId" value="{{employeeId}}" required>
+                            <div class="row">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Account number</label>
+                                    <input id="accountNumber" type="text" class="form-control" value="{{accountNumber}}" disabled required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Bank</label>
+                                    <select id="bank" required class="form-control" required name="bank" disabled>
+                                        <option selected>{{bank}}</option>
+                                        <option>Equity</option>
+                                        <option>Co-operative</option>
+                                        <option>KCB</option>
+                                        <option>National</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button id="accountBtn" type="submit" class="btn btn-primary" disabled>Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <form action="/delete-employee" id="deleteForm">
+                    <button type="submit" class="btn btn-danger">Delete Employee</button>
+                </form>
+            </div>
+            <div>
+                <form action="/deactivate-employee" id="deactivateForm">
+                    <button type="submit" class="btn btn-danger">Deactivate Employee</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Employee Payment</h4>
+                        <input type="checkbox" id="payToggle">
+                    </div>
+                    <div class="card-content">
+                        <form action="/pay-employee" id="payForm">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                            <input type="hidden" name="employeeId" value="{{employeeId}}" required>
+                            <div class="row">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Amount</label>
+                                    <input id="amount" type="text" class="form-control" disabled required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Month</label>
+                                    <select id="month" required class="form-control" required disabled>
+                                        <option value="January">January</option>
+                                        <option value="February">February</option>
+                                        <option value="March">March</option>
+                                        <option value="April">April</option>
+                                        <option value="May">May</option>
+                                        <option value="June">June</option>
+                                        <option value="July">July</option>
+                                        <option value="August">August</option>
+                                        <option value="September">September</option>
+                                        <option value="October">October</option>
+                                        <option value="November">November</option>
+                                        <option value="December">December</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Year</label>
+                                    <select id="year" required class="form-control" required name="bank" disabled>
+                                        <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button id="payBtn" type="submit" class="btn btn-primary" disabled>Pay Employee</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{!-- employees customer orders --}}
+            <div>
+                <div class="">
+                    <table class="table table-striped" id="table" border="1">
+                        <thead>
+                            <th>Entry date</th>
+                            <th colspan="2">Foods</th>
+                            <th>Table</th>
+                            <th>Status</th>
+                        </thead>
+                        {{#each customerOrders}}
+                        <tr>
+                            <td rowspan="{{length}}">{{createdDate}}</td>
+                            <td>name</td>
+                            <td>quantity</td>
+                            <td rowspan="{{length}}">{{table}}</td>
+                            <td rowspan="{{length}}">{{status}}</td>
+                            </td>
+                        </tr>
+                        {{#each foods}}
+                        <tr>
+                            <td>{{food.name}}</td>
+                            <td>{{quantity}}</td>
+                        </tr>
+                        {{/each}} {{/each}}
+                    </table>
+                </div>
+            </div>
+            {{!-- employees salaries --}}
+            <div>
+                <div class="">
+                    <table class="table table-striped" id="salariesTable">
+                        <thead>
+                            <th>Month</th>
+                            <th>Year</th>
+                            <th>Amount</th>
+                            <th>Date added</th>
+                            <th>Edit/Delete</th>
+                        </thead>
+                        {{#each salaries}}
+                        <tr>
+                            <td>
+                                <input type="hidden" value="{{salaryId}}">
+                                <span>{{month}}</span>
+                            </td>
+                            <td>{{year}}</td>
+                            <td>{{amount}}</td>
+                            <td>{{createdDate}}</td>
+                            <td>
+                                <i data-toggle="modal" data-target="#myModal" style="text-decoration: none" class="material-icons view">edit</i>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center">Update Salary</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row sign-up">
+                    <form action="/update-salary" class="form-horizontal" role="form" id="uSalaryForm">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <input type="hidden" name="salaryId" id="uSalaryId" required>
+                        <div class="form-group">
+                            <label for="name" class="control-label col-sm-3">Amount:</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="uAmount" required class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label col-sm-3">Month:</label>
+                            <div class="col-sm-6">
+                                <select id="uMonth" required class="form-control" required>
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="control-label col-sm-3">Year:</label>
+                            <div class="col-sm-6">
+                                <select id="uYear" required class="form-control" required name="bank">
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-8">
+                                <button type="submit" id="uPayBtn" class="btn btn-success">Update Salary</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-sm-offset-3 col-sm-8">
+                        <form action="/delete-salary" id="deleteSalaryForm">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{{#section 'jquery'}}
+<script>
+    $(document).ready(function () {
+
+        //disable enable inputs using check box
+        $("#toggleBtn").click(function () {
+            $("#firstName").attr('disabled', !this.checked);
+            $("#lastName").attr('disabled', !this.checked);
+            $("#email").attr('disabled', !this.checked);
+            $("#phoneNumber").attr('disabled', !this.checked);
+            $("#idNumber").attr('disabled', !this.checked);
+            $("#address").attr('disabled', !this.checked);
+            $("#postalCode").attr('disabled', !this.checked);
+            $("#city").attr('disabled', !this.checked);
+            $("#role").attr('disabled', !this.checked);
+            $("#position").attr('disabled', !this.checked);
+            $('#status').attr('disabled', true);
+            $('#accountNumber').attr('disabled', !this.checked);
+            $('#bank').attr('disabled', !this.checked);
+            $('#accountBtn').attr('disabled', !this.checked);
+            $('#employeeBtn').attr('disabled', !this.checked);
+        });
+
+        $("#payToggle").click(function () {
+            $('#amount').attr('disabled', !this.checked);
+            $('#month').attr('disabled', !this.checked);
+            $('#year').attr('disabled', !this.checked);
+            $('#payBtn').attr('disabled', !this.checked);
+        });
+
+        $('tbody tr').click(
+            function () {
+                var month = $(this).find("td:nth-child(1) span").html();
+                var salaryId = $(this).find("td:nth-child(1) input").val();
+                var year = $(this).find("td:nth-child(2)").html();
+                var amount = $(this).find("td:nth-child(3)").html();
+                $('#uAmount').val(amount);
+                $('#uMonth').val(month);
+                $('#uYear').val(year);
+                $('#uSalaryId').val(salaryId);
+                console.log(salaryId);
+            });
+
+
+        $('form').on('submit', function (evt) {
+            evt.preventDefault();
+            var action = $(this).attr('action');
+            $.ajaxSetup({
+                headers: { "X-CSRF-Token": "{{csrfToken}}" }
+            });
+
+            var employeeId = "{{employeeId}}";
+            var data = null;
+            if ($(this).attr('id') === 'employeeForm') {
+                data = {
+                    "firstName": $("#firstName").val(),
+                    "lastName": $("#lastName").val(),
+                    "email": $("#email").val(),
+                    "phoneNumber": $("#phoneNumber").val(),
+                    "idNumber": $("#idNumber").val(),
+                    "address": $("#address").val(),
+                    "postalCode": $("#postalCode").val(),
+                    "city": $("#city").val(),
+                    "role": $("#role").val(),
+                    "position": $("#position").val(),
+                    "employeeId": employeeId
+                };
+            } else if ($(this).attr('id') === 'accountForm') {
+                data = {
+                    "accountNumber": $("#accountNumber").val(),
+                    "bank": $("#bank").val(),
+                    "employeeId": employeeId
+                };
+            } else if ($(this).attr('id') === 'deleteForm') {
+                data = {
+                    "employeeId": employeeId
+                };
+            } else if ($(this).attr('id') === 'deactivateForm') {
+                data = {
+                    "employeeId": employeeId
+                };
+            } else if ($(this).attr('id') === 'payForm') {
+                data = {
+                    "sMonth": $("#month").val(),
+                    "sYear": $('#year').val(),
+                    "employeeId": employeeId,
+                    "amount": $("#amount").val()
+                };
+            } else if ($(this).attr('id') === 'uSalaryForm') {
+                data = {
+                    "sMonth": $("#uMonth").val(),
+                    "sYear": $('#uYear').val(),
+                    "salaryId": $('#uSalaryId').val(),
+                    "amount": $("#uAmount").val(),
+                    "employeeId": employeeId
+                };
+            } else if ($(this).attr('id') === 'deleteSalaryForm') {
+                data = {
+                    "salaryId": $('#uSalaryId').val()
+                };
+            } 
+            console.log(data);
+
+            $.ajax({
+                url: action,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function (data) {
+                    alert('success');
+                    location.reload(true);
+                },
+                error: function () {
+                    alert('failure');
+                    location.reload(true);
+                }
+            });
+        });
+
+    });
+</script> {{/section}}

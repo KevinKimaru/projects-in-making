@@ -1,0 +1,9 @@
+<h1>{{table}}</h1>
+<h2><a href="/employee/{{waiter._id}}">{{waiter.fullName}}</a></h2>
+{{#each foods}}
+  <h3><a href="/food/{{food._id}}">{{food.name}}</a>  {{quantity}}</h3>
+  <hr>
+{{/each}}
+<h1>{{status}}</h1>
+<h3>{{modifiedDate}}</h3>
+<h3>{{createdDate}}</h3>

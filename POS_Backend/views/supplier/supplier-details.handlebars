@@ -1,0 +1,303 @@
+<div class="content">
+    <div class="container-fluid">
+        <div>
+            <h2 class="text-primary">{{companyName}}</h2>
+            <h5>Added: {{createdDate}}</h5>
+            <h5>Lastly updated: {{modifiedDate}}</h5>
+        </div>
+        <label>Update</label>
+        <input type="checkbox" id="toggleBtn">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Supplier details</h4>
+                        <p class="category">update/view supplier</p>
+                    </div>
+                    <div class="card-content">
+                        <form action="/update-supplier" id="supplierForm">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}" id="_csrf">
+                            <input type="hidden" value="{{supplierId}}" required>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Company</label>
+                                        <input id="companyName" type="text" class="form-control" value="{{companyName}}" disabled required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Email</label>
+                                        <input id="email" type="email" class="form-control"  value="{{email}}" disabled required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Phone number</label>
+                                        <input id="phoneNumber" type="text" class="form-control"  value="{{phoneNumber}}" disabled required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Address</label>
+                                        <input id="address" type="text" class="form-control"  value="{{address}}" disabled required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Address code</label>
+                                        <input id="postalCode" type="text" class="form-control" value="{{postalCode}}" disabled required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">City</label>
+                                        <input id="city" type="text" class="form-control" value="{{city}}" disabled required>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="supplierBtn" type="submit" class="btn btn-primary pull-right" disabled>Update</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Account Details</h4>
+                        <p class="category">view/update account</p>
+                    </div>
+                  <div class="card-content">
+                    <form action="/update-supplierAccount" id="accountForm">
+                      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                      <div class="row">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Account number</label>
+                            <input id="accountNumber" type="text" class="form-control" value="{{accountNumber}}" disabled required>
+                        </div> 
+                      </div>
+                      <div class="row">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Bank</label>
+                            <select id="bank" required class="form-control" required name="bank" disabled>
+                              <option selected>{{bank}}</option>
+                              <option>Equity</option>
+                              <option>Co-operative</option>
+                              <option>KCB</option>
+                              <option>National</option>
+                            </select>
+                        </div>
+                      </div>
+                      <button id="accountBtn" type="submit" class="btn btn-primary" disabled>Update</button>
+                    </form>
+                  </div>
+                 </div> 
+            </div>
+
+            <div>
+                <form action="/delete-supplier" id="deleteForm">
+                    <button type="submit" class="btn btn-danger">Delete Supplier</button>
+                </form>
+            </div>
+            <div>
+                <form action="/deactivate-supplier" id="deactivateForm">
+                    <button type="submit" class="btn btn-danger">Deactivate Supplier</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Supplier Payment</h4>
+                        {{!-- <input type="checkbox" id="payToggle"> --}}
+                        <label class="switch switch-3d switch-danger">
+                            <input type="checkbox" class="switch-input" id="payToggle">
+                            <span class="switch-label"></span>
+                            <span class="switch-handle"></span>
+                        </label>
+                    </div>
+                  <div class="card-content">
+                    <form action="/pay-supplier" id="payForm">
+                      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                      <input type="hidden" name="supplierId" value="{{supplierId}}" required>
+                      <div class="row">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Amount</label>
+                            <input id="amount" type="text" class="form-control"disabled required>
+                        </div> 
+                      </div>
+                      <button id="payBtn" type="submit" class="btn btn-primary" disabled>Pay Supplier</button>
+                    </form>
+                  </div>
+                 </div> 
+            </div>
+            {{!-- employees customer orders --}}
+            <div>
+                <div class="">
+                    <table class="table table-striped" id="table">
+                        <thead>
+                        <th>Date added</th>
+                        <th>Amount</th>
+                        <th>View</th>
+                        </thead>
+                        {{#each credits}}
+                        <tr>
+                            <td>{{createdDate}}</td>
+                            <td>{{amount}}</td>
+                            <td><a href="/credit?credit={{creditId}}">view</a></td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                </div>
+            </div>
+            {{!-- supplier credits --}}
+            <div>
+                <div class="">
+                    <table class="table table-striped" id="table">
+                        <thead>
+                        <th>Date added</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>View</th>
+                        </thead>
+                        {{#each supplierOrders}}
+                        <tr>
+                            <td>{{createdDate}}</td>
+                            <td><a href="/item/{{itemId}}">{{item}}</a></td>
+                            <td>{{quantity}}</td>
+                            <td>{{itemPrice}}</td>
+                            <td><a style="text-decoration: none" 
+                            href="/supplierOrder?supplierOrderId={{supplierOrderId}}">View</a></td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                </div>
+            </div>
+            {{!-- Transactions --}}
+            <div>
+                <div class="">
+                    <table class="table table-striped" id="table">
+                        <thead>
+                        <th>Date added</th>
+                        <th>Description</th>
+                        <th>Debit</th>
+                        <th>Credit</th>
+                        <th>Balance</th>
+                        </thead>
+                        {{#each supplierInvoices}}
+                        <tr>
+                            <td>{{createdDate}}</td>
+                            <td>{{description}}</td>
+                            <td>{{debitAmount}}</td>
+                            <td>{{creditAmount}}</td>
+                            <td>{{balance}}</td>
+                            <td></td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{#section 'head'}}
+    <link rel="stylesheet" href="css/styleSwitch.css">
+{{/section}}
+
+{{#section 'jquery'}} 
+<script>
+   $(document).ready(function () {
+
+      //disable enable inputs using check box
+       $("#toggleBtn").click(function() {
+            $("#firstName").attr('disabled', !this.checked);
+            $("#lastName").attr('disabled', !this.checked);
+            $("#email").attr('disabled', !this.checked);
+            $("#phoneNumber").attr('disabled', !this.checked);
+            $("#idNumber").attr('disabled', !this.checked);
+            $("#address").attr('disabled', !this.checked);
+            $("#postalCode").attr('disabled', !this.checked);
+            $("#city").attr('disabled', !this.checked);
+            $("#role").attr('disabled', !this.checked);
+            $("#position").attr('disabled', !this.checked);
+            $('#accountNumber').attr('disabled', !this.checked);
+            $('#bank').attr('disabled', !this.checked);
+            $('#status').attr('disabled', true);
+            $('#accountBtn').attr('disabled', !this.checked);
+            $('#supplierBtn').attr('disabled', !this.checked);
+       });
+
+       $("#payToggle").click(function() {
+           $('#amount').attr('disabled', !this.checked);
+           $('#payBtn').attr('disabled', !this.checked);
+       });
+
+        $('form').on('submit', function(evt){
+        evt.preventDefault();
+        var action = $(this).attr('action');
+        $.ajaxSetup({
+         headers: {"X-CSRF-Token": "{{csrfToken}}"}
+        });
+
+        var supplierId = "{{supplierId}}";
+        var data = null;
+        if($(this).attr('id') === 'supplierForm') {
+            data = {
+                "companyName": $("#companyName").val(),
+                "email": $("#email").val(),
+                "phoneNumber":$("#phoneNumber").val(),
+                "address": $("#address").val(),
+                "postalCode": $("#postalCode").val(),
+                "city": $("#city").val(),
+                "supplierId": supplierId
+            };
+        } else if ($(this).attr('id') === 'accountForm') {
+            data = {
+                "accountNumber": $("#accountNumber").val(),
+                "bank": $("#bank").val(),
+                "supplierId": supplierId
+            };
+        } else if ($(this).attr('id') === 'deleteForm') {
+            data = {
+                "supplierId": supplierId
+            };
+        } else if ($(this).attr('id') === 'deactivateForm') {
+            data = {
+                "supplierId": supplierId
+            };
+        } else if ($(this).attr('id') === 'payForm') {
+            data = {
+                "sMonth": $("#month").val(),
+                "sYear": $('#year').val(),
+                "supplierId": supplierId,
+                "amount": $("#amount").val()
+            };
+        } 
+        console.log(data);
+
+        $.ajax({
+          url: action,
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(data),
+          success: function(data){
+            alert('success');
+            location.reload(true);
+          },
+          error: function(){
+            alert('failure');
+            location.reload(true);
+          }
+        });
+      });
+
+    });
+</script>
+{{/section}}
+

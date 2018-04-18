@@ -1,0 +1,195 @@
+<div class="content">
+  <div>
+    <a class="button orange" data-toggle="modal" data-target="#myModal" id="newSupplierOrder">
+      <span>&nbsp&nbsp
+        <i class="material-icons">local_grocery_store</i>
+      </span>
+      <b>New Order from Supplier</b>
+    </a>
+  </div>
+  <table class="table table-striped" id="table">
+    <thead>
+      <th>Item</th>
+      <th>Supplier</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Date added</th>
+      <th>Last modified</th>
+      <th>Edit/Delete</th>
+    </thead>
+    {{#each foods}}
+    <tr>
+      <td>
+        <input type="hidden" value="{{itemId}}">
+        <span>{{item}}</span>
+      </td>
+      <td>
+        <input type="hidden" value="{{supplierId}}">
+        <a href="/supplier?supplier={{supplierId}}">{{supplier}}</a>
+      </td>
+      <td>{{quantity}}</td>
+      <td>{{itemPrice}}</td>
+      <td>{{createdDate}}</td>
+      <td>{{modifiedDate}}</td>
+      <td>
+        <i data-toggle="modal" data-target="#myModal" style="text-decoration: none" class="material-icons view">edit</i>
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Update Order</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row sign-up">
+          <form action="/update-food" method="post" class="form-horizontal" role="form" id="supplierOrderForm">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}" id="csrf">
+            <input type="hidden" name="supplierOrderId" id="supplierOrderId">
+            <div class="form-group">
+              <label for="item" class="control-label col-sm-3">Item:</label>
+              <div class="col-sm-6">
+                <select required class="form-control" name="item" id="item">
+                  {{#each items}}
+                  <option value="{{itemId}}">{{item}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="supplier" class="control-label col-sm-3">Supplier:</label>
+              <div class="col-sm-6">
+                <select required class="form-control" name="supplier" id="supplier">
+                  {{#each suppliers}}
+                  <option value="{{supplierId}}">{{supplier}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="quantity" class="control-label col-sm-3">Quantity:</label>
+              <div class="col-sm-6">
+                <input type="number" required class="form-control" id="quantity" name="quantity">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="itemPrice" class="control-label col-sm-3">Price per item:</label>
+              <div class="col-sm-6">
+                <input type="number" required class="form-control" id="itemPrice" name="iemPrice">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-3 col-sm-8">
+                <button type="submit" class="btn btn-success" id="submitSupplierOrder">Update</button>
+              </div>
+            </div>
+          </form>
+          <div class="col-sm-offset-3 col-sm-8">
+            <form action="/delete-supplierOrder" id="deleteSupplierOrderForm">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{{#section 'jquery'}}
+<!-- <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+
+<script type="text/javascript" src="DataTables/datatables.min.js"></script> -->
+
+<!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>   -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $('#table').DataTable();
+
+    $('tbody tr').click(
+      function () {
+        var item = $(this).find("td:nth-child(1) span").html();
+        var itemId = $(this).find("td:nth-child(1) input").val();
+        var supplier = $(this).find("td:nth-child(2)").html();
+        var supplierId = $(this).find("td:nth-child(2) input").val();
+        var quantity = $(this).find("td:nth-child(3)").html();
+        var itemPrice = $(this).find("td:nth-child(4)").html();
+        $('#item').val(itemId);
+        $('#supplier').val(supplierId);
+        $('#quantity').val(quantity);
+        $('#itemPrice').val(itemPrice);
+
+        $('#supplierOrderForm').attr('action', '/update-supplierOrder');
+        $('.modal-title').html('Update Order from Supplier');
+        $('#deleteSupplierOrderForm').show();
+        $('#submitSupplierOrder').html('Update');
+      });
+
+    $('#newSupplierOrder').on('click', function () {
+      $('#item').val("");
+      $('#supplier').val("");
+      $('#quantity').val("");
+      $('#itemPrice').val("");
+      $('#supplierOrderId').val("");
+
+      $('#supplierOrderForm').attr('action', '/add-supplierOrder');
+      $('.modal-title').html('Make Order from Supplier');
+      $('#deleteSupplierOrderForm').hide();
+      $('#submitSupplierOrder').html('Make Order');
+    });
+
+    $('form').on('submit', function (evt) {
+      evt.preventDefault();
+      var action = $(this).attr('action');
+      $.ajaxSetup({
+        headers: { "X-CSRF-Token": $('#csrf').val() }
+      });
+      var data;
+      if ($(this).attr('id') === 'foodForm') {
+        data = {
+          item: $('#item').val(),
+          supplier: $('#supplier').val(),
+          itemPrice: $('#itemPrice').val(),
+          quantity: $("#quantity").val(),
+          supplierOrderId: $('#supplierOrderId').val()
+        };
+      } else if ($(this).attr('id') === 'deleteSupplierOrderForm') {
+        data = {
+          supplierOrderId: $('#supplierOrderId').val()
+        };
+      }
+
+      $.ajax({
+        url: action,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: function (data) {
+          alert('success');
+          location.reload(true);
+        },
+        error: function () {
+          alert('failure');
+          location.reload(true);
+        }
+      });
+    });
+  });
+</script> {{/section}} {{#section 'head'}}
+
+<link rel="stylesheet" href="css/fancybtns.css"> {{/section}}

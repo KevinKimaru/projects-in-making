@@ -1,0 +1,57 @@
+<div class="content">
+    <table class="table table-striped">
+        <tr>
+            <td>Supplier</td>
+            <td><a href="/supplier?supplier={{supplierId}}">{{supplier}}</a></td>
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td>{{createdDate}}</a></td>
+        </tr>
+        <tr>
+            <td>Amount</td>
+            <td>{{amount}}</a></td>
+        </tr>
+    </table>
+    <div>
+        <form action="/delete-credit" id="deleteForm">
+            <button type="submit" class="btn btn danger">Delete</button>
+        </form>
+    </div>
+</div>
+
+{{#section 'jquery'}}
+<script>
+    $('form').on('submit', function(evt){
+        evt.preventDefault();
+        var action = $(this).attr('action');
+        $.ajaxSetup({
+         headers: {"X-CSRF-Token": "{{csrfToken}}"}
+        });
+
+        var creditId = "{{creditId}}";
+        var data = null;
+        
+        if ($(this).attr('id') === 'deleteForm') {
+            data = {
+                "creditId": creditId
+            };
+        } 
+
+        $.ajax({
+          url: action,
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(data),
+          success: function(data){
+            alert('success');
+            window.location.href = data.redirect;
+          },
+          error: function(){
+            alert('failure');
+            location.reload(true);
+          }
+        });
+      });
+</script>
+{{/section}}

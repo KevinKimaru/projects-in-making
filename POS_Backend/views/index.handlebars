@@ -1,0 +1,563 @@
+<div class="content">
+    <div class="container-fluid">
+        <div>
+            <h2 style="color:#8e44ad">Actions</h2>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="/add-supplierOrder" class="button">
+                    <span>&nbsp&nbsp<i class="material-icons">shopping_basket</i></span>
+                    <b>Order from supplier</b>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="/add-storeOut" class="button red">
+                    <span>&nbsp&nbsp<i class="material-icons">local_grocery_store</i></span>
+                    <b>Order From Store</b>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="/add-credit" class="button turquoise">
+                    <span>&nbsp&nbsp<i class="material-icons">money_off</i></span>
+                    <b>Pay Supplier</b>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="/add-salary" class="button purple">
+                    <span>&nbsp&nbsp<i class="material-icons">money_off</i></span>
+                    <b>Pay employee</b>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="/add-supplier" class="button purple">
+                    <span>&nbsp&nbsp<i class="material-icons">shop</i></span>
+                    <b>New Supplier</b>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="/add-employee" class="button">
+                    <span>&nbsp&nbsp<i class="material-icons">people_outline</i></span>
+                    <b>New Employee</b>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="/add-liability" class="button red">
+                    <span>&nbsp&nbsp<i class="material-icons">money_off</i></span>
+                    <b>Add expenses</b>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="/add-food" class="button purple">
+                    <span>&nbsp&nbsp<i class="material-icons">cake</i></span>
+                    <b>Add Dish</b>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <a href="/add-item" class="button turquoise">
+                    <span>&nbsp&nbsp<i class="material-icons">work</i></span>
+                    <b>Add Item</b>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h2 style="color:#8e44ad">Statistics</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header" data-background-color="orange">
+                        <i class="material-icons">content_copy</i>
+                    </div>
+                    <div class="card-content">
+                        <p class="category">Today's sales</p>
+                        <h3 class="title">Ksh {{dailyTotal}}</h3>
+                        <h3><small>{{dailyCount}} orders</small></h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                           <i class="material-icons">date_range</i>Current status since last browser reload
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header" data-background-color="orange">
+                        <i class="material-icons">content_copy</i>
+                    </div>
+                    <div class="card-content">
+                        <p class="category">This month's sales</p>
+                        <h3 class="title">Ksh {{monthlyTotal}}</h3>
+                        <h3><small>{{monthlyCount}} orders</small></h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">date_range</i>Current status since last browser reload
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <a href="/inventories">
+                <div class="card card-stats">
+                    {{#if outOfStockItems}}
+                        <div class="card-header" data-background-color="red">
+                            <i class="material-icons">info_outline</i>
+                        </div>
+                    {{else}}
+                        <div class="card-header" data-background-color="blue">
+                            <i class="material-icons">info_outline</i>
+                        </div>
+                    {{/if}}
+                    <div class="card-content">
+                        <p class="category">Inventory Status</p>
+                        <h3 class="title">
+                            {{{stockStatus}}}
+                        </h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">local_offer</i> Click to track inventory
+                        </div>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <a href="/items">
+                <div class="card card-stats">
+                    <div class="card-header" data-background-color="blue">
+                        <i class="material-icons">store</i>
+                    </div>
+                    <div class="card-content">
+                        <p class="category">This month's Supplied Orders</p>
+                        <h3 class="title">{{itemsCount}}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            {{!-- <i class="material-icons">update</i> --}}
+                            <i class="material-icons">store</i>
+                            Click to view all items
+                        </div>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <a href="/items">
+                <div class="card card-stats">
+                    <div class="card-header" data-background-color="blue">
+                        <i class="material-icons">store</i>
+                    </div>
+                    <div class="card-content">
+                        <p class="category">Balance sheet</p>
+                        <h3 class="title">{{itemsCount}}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            {{!-- <i class="material-icons">update</i> --}}
+                            <i class="material-icons">store</i>
+                            Click to view all items
+                        </div>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <a href="/items">
+                <div class="card card-stats">
+                    <div class="card-header" data-background-color="blue">
+                        <i class="material-icons">store</i>
+                    </div>
+                    <div class="card-content">
+                        <p class="category">Invoices</p>
+                        <h3 class="title">{{itemsCount}}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            {{!-- <i class="material-icons">update</i> --}}
+                            <i class="material-icons">store</i>
+                            Click to view all items
+                        </div>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <a href="/items">
+                <div class="card card-stats">
+                    <div class="card-header" data-background-color="blue">
+                        <i class="material-icons">store</i>
+                    </div>
+                    <div class="card-content">
+                        <p class="category">This month's expenses</p>
+                        <h3 class="title">{{itemsCount}}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            {{!-- <i class="material-icons">update</i> --}}
+                            <i class="material-icons">store</i>
+                            Click to view all items
+                        </div>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="orange">
+                        <h4 class="title">Employees Activity</h4>
+                        <p class="category">{{month}}</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                                <th>Waiter</th>
+                                <th>Orders</th>
+                                {{!-- <th>Salary</th>
+                                <th>Country</th> --}}
+                            </thead>
+                            <tbody>
+                                {{#each waitersActivity}}
+                                <tr>
+                                    <td>{{waiter}}</td>
+                                    <td>{{orders}}</td>
+                                    {{!-- <td>$36,738</td>
+                                    <td>Niger</td> --}}
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2 style="color:#8e44ad">Most referenced</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header" data-background-color="blue">
+                        <i class="material-icons" style="font-size: 50px">store</i>
+                        <p style="font-size: 2em">Employees</p>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="title">Email Subscriptions</h4>
+                        <p class="category">Last Campaign Performance</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> campaign sent 2 days ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header" data-background-color="grey">
+                        <i class="material-icons" style="font-size: 50px">store</i>
+                        <p style="font-size: 2em">Products Out</p>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="title">Email Subscriptions</h4>
+                        <p class="category">Last Campaign Performance</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> campaign sent 2 days ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header" data-background-color="green">
+                        <i class="material-icons" style="font-size: 50px">store</i>
+                        <p style="font-size: 2em">Products in</p>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="title">Email Subscriptions</h4>
+                        <p class="category">Last Campaign Performance</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> campaign sent 2 days ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <i class="material-icons" style="font-size: 50px">store</i>
+                        <p style="font-size: 2em">Products</p>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="title">Email Subscriptions</h4>
+                        <p class="category">Last Campaign Performance</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> campaign sent 2 days ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header" data-background-color="orange">
+                        <i class="material-icons" style="font-size: 50px">store</i>
+                        <p style="font-size: 2em">Dishes</p>
+                    </div>
+                    <div class="card-content">
+                        <h4 class="title">Email Subscriptions</h4>
+                        <p class="category">Last Campaign Performance</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> campaign sent 2 days ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2 style="color:#8e44ad">TODOs</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="card card-nav-tabs">
+                    <div class="card-header" data-background-color="purple">
+                        <div class="nav-tabs-navigation">
+                            <div class="nav-tabs-wrapper">
+                                <span class="nav-tabs-title">Tasks:</span>
+                                <ul class="nav nav-tabs" data-tabs="tabs">
+                                    <li class="active">
+                                        <a href="#profile" data-toggle="tab">
+                                            <i class="material-icons">bug_report</i> Bugs
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#messages" data-toggle="tab">
+                                            <i class="material-icons">code</i> Website
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#settings" data-toggle="tab">
+                                            <i class="material-icons">cloud</i> Server
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="profile">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="optionsCheckboxes" checked>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>Sign contract for "What are conference organizers afraid of?"</td>
+                                            <td class="td-actions text-right">
+                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="optionsCheckboxes">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                                            <td class="td-actions text-right">
+                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="optionsCheckboxes">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                                            </td>
+                                            <td class="td-actions text-right">
+                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="optionsCheckboxes" checked>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>Create 4 Invisible User Experiences you Never Knew About</td>
+                                            <td class="td-actions text-right">
+                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="messages">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="optionsCheckboxes" checked>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                                            </td>
+                                            <td class="td-actions text-right">
+                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="optionsCheckboxes">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>Sign contract for "What are conference organizers afraid of?"</td>
+                                            <td class="td-actions text-right">
+                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="settings">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="optionsCheckboxes">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                                            <td class="td-actions text-right">
+                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="optionsCheckboxes" checked>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                                            </td>
+                                            <td class="td-actions text-right">
+                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="optionsCheckboxes">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>Sign contract for "What are conference organizers afraid of?"</td>
+                                            <td class="td-actions text-right">
+                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
+                                                    <i class="material-icons">edit</i>
+                                                </button>
+                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{#section 'head'}}
+
+<link rel="stylesheet" href="css/fancybtns.css">
+
+{{/section}}

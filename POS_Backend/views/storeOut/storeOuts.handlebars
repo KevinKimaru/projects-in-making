@@ -1,0 +1,168 @@
+<div class="content">
+  <div>
+    <a class="button orange" data-toggle="modal" data-target="#myModal" id="newStoreOut">
+      <span>&nbsp&nbsp
+        <i class="material-icons">local_grocery_store</i>
+      </span>
+      <b>Fetch from store</b>
+    </a>
+  </div>
+  <table class="table table-striped" id="table">
+    <thead>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Date added</th>
+      <th>Last Modified</th>
+      <th>Edit/Delete</th>
+    </thead>
+    {{#each storeOuts}}
+    <tr>
+      <td>
+        <input type="hidden" value="{{itemId}}">
+        <span>{{itemName}}</span>
+      </td>
+      <td>
+        <input type="hidden" value="{{storeOutId}}">
+        <span>{{quantity}}</span>
+      </td>
+      <td>{{createdDate}}</td>
+      <td>{{modifiedDate}}</td>
+      <td>
+        <i data-toggle="modal" data-target="#myModal" style="text-decoration: none"
+         class="material-icons view">edit</i>
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Update Store outs</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row sign-up">
+          <form action="/update-food" method="post" class="form-horizontal" role="form" id="storeOutForm">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}" id="csrf">
+            <input type="hidden" name="storeOutId" id="storeOutId">
+            <div class="form-group">
+              <label for="category" class="control-label col-sm-3">Item:</label>
+              <div class="col-sm-6">
+                <select required class="form-control" name="item" id="item">
+                  {{#each items}}
+                  <option value="{{itemId}}">{{itemName}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="description" class="control-label col-sm-3">Quantity:</label>
+              <div class="col-sm-6">
+                <input type="text" required class="form-control" id="quantity" name="quantity">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-3 col-sm-8">
+                <button type="submit" class="btn btn-success" id="submitStoreOut">Update</button>
+              </div>
+            </div>
+          </form>
+          <div class="col-sm-offset-3 col-sm-8">
+            <form action="/delete-storeOut" id="deleteStoreOutForm">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{{#section 'jquery'}}
+<!-- <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+
+<script type="text/javascript" src="DataTables/datatables.min.js"></script> -->
+
+<!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>   -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $('#table').DataTable();
+
+    $('tbody tr').click(
+      function () {
+        var itemId = $(this).find("td:nth-child(1) input").val();
+        var quantity = $(this).find("td:nth-child(2) span").html();
+        var storeOutId = $(this).find("td:nth-child(2) input").val();
+        $('#quantity').val(quantity);
+        $('#storeOutId').val(storeOutId);
+        $('#item').val(itemId);
+
+        $('#storeOutForm').attr('action', '/update-storeOut');
+        $('.modal-title').html('Update Store out');
+        $('#deactivateStoreOutForm').show();
+        $('#submitStoreOut').html('Update');
+      });
+
+    $('#newStoreOut').on('click', function () {
+      $('#storeOutId').val("");
+      $('#item').val("");
+      $('#quantity').val("");
+
+      $('#storeOutForm').attr('action', '/add-storeOut');
+      $('.modal-title').html('Add Store out');
+      $('#deactivateStoreOutForm').hide();
+      $('#submitStoreOut').html('Add');
+    });
+
+    $('form').on('submit', function (evt) {
+      evt.preventDefault();
+      var action = $(this).attr('action');
+      $.ajaxSetup({
+        headers: { "X-CSRF-Token": $('#csrf').val() }
+      });
+      var data;
+      if ($(this).attr('id') === 'storeOutForm') {
+        data = {
+          itemId: $('#item').val(),
+          quantity: $('#quantity').val(),
+          storeOutId: $('#storeOutId').val()
+        };
+      } else if ($(this).attr('id') === 'deleteStoreOutForm') {
+        data = {
+          storeOutId: $('#storeOutId').val()
+        };
+      }
+
+      $.ajax({
+        url: action,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: function (data) {
+          alert('success');
+          location.reload(true);
+        },
+        error: function () {
+          alert('failure');
+          location.reload(true);
+        }
+      });
+    });
+  });
+</script> {{/section}} {{#section 'head'}}
+
+<link rel="stylesheet" href="css/fancybtns.css"> {{/section}}

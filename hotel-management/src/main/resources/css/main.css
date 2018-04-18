@@ -1,0 +1,25 @@
+.imgBtn {
+     -fx-background-color: #0c6f72;
+     -fx-background-radius: 5px;
+     -fx-font-family: "Bodoni MT";
+     -fx-text-size: 1.5em;
+     -fx-text-fill: #ffffff;
+}
+
+ImageView {
+    -fx-background-radius: 20px;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(29,129,132,0.8), 10, 0, 0, 0);
+}
+
+.imgTilePane {
+    -fx-background-color: #809fa0;
+}
+
+HBox, VBox, ScrollPane, TitlePane {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+
+

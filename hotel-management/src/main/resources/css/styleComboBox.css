@@ -1,0 +1,28 @@
+#changed{
+    -fx-background-color: transparent;
+}
+#changed .arrow,
+#changed .arrow-button{
+    -fx-background-color: transparent;
+}
+
+
+/* this part is from  default stiles fxrt.jar!/com/sun/javafx/scene/control/skin/caspian/caspian.css */
+#changed:hover{
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-radius: 5, 5, 4, 3;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-padding: 0;
+}
+
+#changed:showing > .arrow-button {
+    -fx-color: -fx-pressed-base;
+}
+
+/* ------- ARROW* ------- */
+#changed:hover > .arrow-button > .arrow{
+    -fx-background-insets: 1 0 -1 0, 0;
+    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
+    -fx-padding: 0.166667em 0.333333em 0.166667em 0.333333em; /* 2 4 2 4 */
+    -fx-shape: "M 0 0 h 7 l -3.5 4 z";
+}

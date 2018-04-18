@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hotel-management.iml" filepath="$PROJECT_DIR$/.idea/modules/hotel-management.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hotel-management_main.iml" filepath="$PROJECT_DIR$/.idea/modules/hotel-management_main.iml" group="hotel-management" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hotel-management_test.iml" filepath="$PROJECT_DIR$/.idea/modules/hotel-management_test.iml" group="hotel-management" />
+    </modules>
+  </component>
+</project>

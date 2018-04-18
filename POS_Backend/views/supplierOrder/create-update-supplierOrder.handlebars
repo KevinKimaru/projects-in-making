@@ -1,0 +1,57 @@
+<div class="content">
+    <h1 class="text-primary text-center">Order from Supplier</h1> 
+  <div class="row sign-up">
+    <form action="{{action}}" method="post" class="form-horizontal" role="form">
+      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+      <input type="hidden" name="supplierOrderId" value="{{supplierOrderId}}">
+      <div class="form-group">
+        <label for="item" class="control-label col-sm-3">Item:</label>
+        <div class="col-sm-7">
+          <select required class="form-control" required name="item">
+            <option selected value="{{itemId}}">{{itemName}}</option>
+            {{#each items}}
+            <option value="{{itemId}}">{{itemName}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="supplier" class="control-label col-sm-3">Supplier:</label>
+        <div class="col-sm-7">
+          <select required class="form-control" required name="supplier">
+            <option selected value="{{supplierId}}">{{supplierName}}</option>
+            {{#each suppliers}}
+            <option value="{{supplierId}}">{{supplierName}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="quantity" class="control-label col-sm-3">Quantity:</label>
+        <div class="col-sm-7">
+          <input type="text" required value="{{quantity}}" class="form-control" id="quantity" name="quantity">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="itemPrice" class="control-label col-sm-3">Item Price:</label>
+        <div class="col-sm-7">
+          <input type="number" required value="{{itemPrice}}" class="form-control" id="itemPrice" name="itemPrice">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-7">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{{#section 'head'}}
+<style>
+  label {
+    font-size: 20px;
+    font-weight: bold;
+  }
+</style>
+{{/section}}

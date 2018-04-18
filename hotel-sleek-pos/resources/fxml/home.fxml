@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1000.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kevin.HomeController">
+    <top>
+        <VBox prefHeight="84.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+            <children>
+                <MenuBar id="menubar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="NEVER">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="Home" />
+                        <Menu mnemonicParsing="false" text="Orders">
+                            <items>
+                                <MenuItem fx:id="ordersBtn" mnemonicParsing="false" onAction="#openOrdersWindow" text="Orders" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Settings" />
+                        <Menu mnemonicParsing="false" text="Refresh">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="R" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                            </accelerator>
+                            <items>
+                                <MenuItem fx:id="refreshBtn" mnemonicParsing="false" onAction="#refreshHome" text="Refresh" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #8e24aa;" VBox.vgrow="ALWAYS">
+                    <children>
+                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Hotel Management" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS">
+                            <font>
+                                <Font name="Bodoni MT Bold" size="24.0" />
+                            </font>
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
+                        </Label>
+                        <Label fx:id="timeLabel" alignment="TOP_RIGHT" contentDisplay="RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Monday 7th March 2018 12:52:90hrs" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS">
+                            <font>
+                                <Font name="Bodoni MT Bold" size="18.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <padding>
+                                <Insets right="10.0" top="2.0" />
+                            </padding>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
+            <children>
+                <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="300.0" style="-fx-background-color: #43a047;" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Orders" textFill="WHITE" VBox.vgrow="NEVER">
+                            <font>
+                                <Font name="Bodoni MT Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <TableView fx:id="ordersTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="157.0" prefWidth="472.0" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="delColumn" editable="false" prefWidth="59.0" text="Del" />
+                                <TableColumn fx:id="decrColumn" editable="false" prefWidth="63.0" text="Decr" />
+                                <TableColumn fx:id="dishColumn" editable="false" prefWidth="134.0" text="Dish" />
+                                <TableColumn fx:id="priceColumn" editable="false" prefWidth="64.0" text="Price" />
+                                <TableColumn fx:id="quantColumn" prefWidth="69.0" text="Quant" />
+                                <TableColumn fx:id="totalColumn" prefWidth="69.0" text="Total" />
+                            </columns>
+                        </TableView>
+                        <GridPane VBox.vgrow="ALWAYS">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Grand Total" textFill="WHITE" wrapText="true">
+                                    <font>
+                                        <Font name="Bodoni MT Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="totalLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="00" textFill="WHITE" GridPane.columnIndex="1">
+                                    <font>
+                                        <Font size="24.0" />
+                                    </font>
+                                </Label>
+                                <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Waiter" textFill="WHITE" wrapText="true" GridPane.rowIndex="1">
+                                    <font>
+                                        <Font name="Bodoni MT Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                                <JFXComboBox fx:id="waiterComboBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="waiter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label alignment="CENTER" layoutX="10.0" layoutY="62.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Table" textFill="WHITE" wrapText="true" GridPane.rowIndex="2">
+                                    <font>
+                                        <Font name="Bodoni MT Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                                <JFXComboBox fx:id="tableComboBox" layoutX="235.0" layoutY="62.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="table" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                            </children>
+                        </GridPane>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="SOMETIMES">
+                            <children>
+                                <JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#makeOrder" style="-fx-background-color: #b7e1b9;" text="Order" HBox.hgrow="ALWAYS">
+                                    <font>
+                                        <Font name="Bodoni MT Bold" size="14.0" />
+                                    </font>
+                                </JFXButton>
+                                <JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#resetOrderPane" style="-fx-background-color: #b7e1b9;" text="Reset" HBox.hgrow="ALWAYS">
+                                    <font>
+                                        <Font name="Bodoni MT Bold" size="14.0" />
+                                    </font>
+                                </JFXButton>
+                            </children>
+                            <padding>
+                                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                            </padding>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="180.0" style="-fx-background-color: #e53935;" HBox.hgrow="NEVER">
+                    <children>
+                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Categories" textFill="WHITE" VBox.vgrow="NEVER">
+                            <font>
+                                <Font name="Bodoni MT Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #e53935;" VBox.vgrow="ALWAYS">
+                            <content>
+                                <VBox fx:id="categoriesVBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: #e53935;">
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </VBox>
+                <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" style="-fx-background-color: #00acc1;" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Dishes" textFill="WHITE" VBox.vgrow="NEVER">
+                            <font>
+                                <Font name="Bodoni MT Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                            <content>
+                                <TilePane fx:id="dishesTilePane" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumns="3" prefHeight="200.0" prefRows="20" prefWidth="200.0" style="-fx-background-color: #00acc1;" vgap="10.0">
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </TilePane>
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </center>
+    <bottom>
+        <HBox prefHeight="35.0" prefWidth="1000.0" style="-fx-background-color: #8e24aa;" BorderPane.alignment="CENTER">
+            <children>
+                <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Copyright Sleek POS v.1.0.0" textFill="#cdc1c1" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <JFXProgressBar fx:id="progressBar" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="20.0" visible="false" HBox.hgrow="ALWAYS">
+                    <HBox.margin>
+                        <Insets top="10.0" />
+                    </HBox.margin>
+                </JFXProgressBar>
+                <Label fx:id="statusLabel" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Status OK" textFill="WHITE" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font name="Bodoni MT Bold" size="14.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>
